@@ -1,0 +1,17 @@
+<svg width="48" height="48" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .logo-outline {
+      fill: #ffffff;
+    }
+    .logo-dot {
+      fill: #ffffff;
+    }
+    @media (prefers-color-scheme: light) {
+      .logo-outline, .logo-dot {
+        fill: #000000;
+      }
+    }
+  </style>
+  <rect class="logo-outline" x="50" y="50" width="412" height="412" rx="100" ry="100" stroke-width="50" fill="none" stroke="currentColor" />
+  <circle class="logo-dot" cx="350" cy="250" r="45" />
+</svg>

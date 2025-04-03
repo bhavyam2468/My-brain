@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 275 77% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 217 91% 60%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 181 76% 40%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 275 77% 53%;
+    --radius: 1rem;
+    --primary-glow: rgba(138, 43, 226, 0.3);
+    --secondary-glow: rgba(30, 144, 255, 0.3);
+    --primary-dark: 275 70% 30%;
+  }
+ 
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 275 80% 26%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 210 40% 92%;
+    --secondary-light: 206 89% 74%; 
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 183 76% 32%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 275 80% 26%;
+    --primary-glow: rgba(75, 0, 130, 0.3);
+    --secondary-glow: rgba(0, 0, 139, 0.3);
+    --primary-dark: 275 70% 60%;
+  }
+}
+
+/* Theme color variations */
+.theme-purple {
+  --gradient-start: 280, 100%, 50%;
+  --gradient-mid: 260, 100%, 25%;
+  --gradient-end: 240, 100%, 10%;
+  --particle-color: rgba(230, 230, 250, 0.9);
+}
+
+.theme-blue {
+  --gradient-start: 220, 100%, 50%;
+  --gradient-mid: 210, 100%, 25%;
+  --gradient-end: 200, 100%, 10%;
+  --particle-color: rgba(220, 240, 255, 0.9);
+}
+
+.theme-green {
+  --gradient-start: 160, 100%, 50%;
+  --gradient-mid: 150, 100%, 30%;
+  --gradient-end: 140, 100%, 10%;
+  --particle-color: rgba(220, 255, 230, 0.9);
+}
+
+.theme-rose {
+  --gradient-start: 350, 100%, 50%;
+  --gradient-mid: 335, 90%, 25%;
+  --gradient-end: 325, 80%, 10%;
+  --particle-color: rgba(255, 220, 240, 0.9);
+}
+
+.theme-amber {
+  --gradient-start: 30, 100%, 50%;
+  --gradient-mid: 20, 90%, 25%;
+  --gradient-end: 10, 80%, 10%;
+  --particle-color: rgba(255, 245, 220, 0.9);
+}
+
+.theme-red {
+  --gradient-start: 0, 100%, 50%;
+  --gradient-mid: 0, 90%, 30%;
+  --gradient-end: 0, 80%, 15%;
+  --particle-color: rgba(255, 225, 225, 0.9);
+}
+
+.theme-teal {
+  --gradient-start: 175, 100%, 45%;
+  --gradient-mid: 175, 90%, 25%;
+  --gradient-end: 175, 80%, 10%;
+  --particle-color: rgba(220, 250, 250, 0.9);
+}
+
+.theme-indigo {
+  --gradient-start: 240, 100%, 50%;
+  --gradient-mid: 242, 90%, 25%;
+  --gradient-end: 245, 80%, 15%;
+  --particle-color: rgba(230, 230, 255, 0.9);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-inter antialiased text-foreground;
+    overflow-x: hidden;
+    position: relative;
+    min-height: 100vh;
+    background-attachment: fixed;
+    transition: background 0.5s ease;
+  }
+
+  /* Dynamic gradient backgrounds - dark mode only */
+  body {
+    background: radial-gradient(
+      circle at 10% 20%, 
+      hsla(var(--gradient-start), 1) 0%, 
+      hsla(var(--gradient-mid), 1) 40%, 
+      hsla(var(--gradient-end), 1) 90%
+    ) !important;
+    color: white !important;
+  }
+
+  /* Enhanced particles effect */
+  @keyframes floatOne {
+    0% { transform: translateY(0) translateX(0) rotate(0); opacity: 0.45; }
+    50% { transform: translateY(-25px) translateX(15px) rotate(8deg); opacity: 0.65; }
+    100% { transform: translateY(0) translateX(0) rotate(0); opacity: 0.45; }
+  }
+  
+  @keyframes floatTwo {
+    0% { transform: translateY(0) translateX(0) rotate(0); opacity: 0.35; }
+    50% { transform: translateY(20px) translateX(-12px) rotate(-5deg); opacity: 0.55; }
+    100% { transform: translateY(0) translateX(0) rotate(0); opacity: 0.35; }
+  }
+  
+  @keyframes floatThree {
+    0% { transform: translateY(0) translateX(0) rotate(0); opacity: 0.25; }
+    33% { transform: translateY(-10px) translateX(5px) rotate(2deg); opacity: 0.35; }
+    66% { transform: translateY(8px) translateX(-4px) rotate(-1deg); opacity: 0.3; }
+    100% { transform: translateY(0) translateX(0) rotate(0); opacity: 0.25; }
+  }
+  
+  /* Multiple particle layers for depth */
+  .particle-layer {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  /* First layer - largest particles, slowest movement */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 20% 30%, var(--particle-color) 2.2px, transparent 2.6px),
+      radial-gradient(circle at 50% 80%, var(--particle-color) 2.5px, transparent 2.8px),
+      radial-gradient(circle at 80% 40%, var(--particle-color) 2.8px, transparent 3px);
+    background-size: 160px 160px;
+    opacity: 0.65;
+    animation: floatOne 24s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+  }
+  
+  /* Second layer - medium particles, medium speed */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 35% 65%, var(--particle-color) 1.8px, transparent 2px),
+      radial-gradient(circle at 70% 25%, var(--particle-color) 1.9px, transparent 2.1px),
+      radial-gradient(circle at 25% 75%, var(--particle-color) 2px, transparent 2.2px);
+    background-size: 120px 120px;
+    opacity: 0.55;
+    animation: floatTwo 28s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+  }
+  
+  /* Third layer class - for adding to Layout component */
+  .particle-layer-three {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      radial-gradient(circle at 45% 40%, var(--particle-color) 0.8px, transparent 1px),
+      radial-gradient(circle at 60% 60%, var(--particle-color) 0.9px, transparent 1.1px),
+      radial-gradient(circle at 75% 35%, var(--particle-color) 1px, transparent 1.2px);
+    background-size: 80px 80px;
+    opacity: 0.3;
+    animation: floatThree 18s ease-in-out infinite;
+    z-index: 0;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  ::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+  }
+  
+  * {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+}
+
+@layer components {
+  .glass {
+    @apply backdrop-blur-lg bg-white/10 dark:bg-black/15 
+           border border-white/20 dark:border-white/10 
+           shadow-[0_10px_15px_-3px_rgba(0,0,0,0.1),0_4px_6px_-4px_rgba(0,0,0,0.1),inset_0_1px_2px_rgba(255,255,255,0.1)]
+           dark:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.25),0_4px_6px_-4px_rgba(0,0,0,0.1),inset_0_1px_1px_rgba(255,255,255,0.05)];
+  }
+  
+  .glass-hover {
+    @apply transition-all duration-300 
+           hover:shadow-[0_15px_25px_-5px_rgba(0,0,0,0.2),0_10px_10px_-5px_rgba(0,0,0,0.1),inset_0_1px_3px_rgba(255,255,255,0.15)] 
+           dark:hover:shadow-[0_15px_25px_-5px_rgba(0,0,0,0.3),0_10px_10px_-5px_rgba(0,0,0,0.2),inset_0_1px_3px_rgba(255,255,255,0.1)]
+           hover:-translate-y-1 
+           hover:bg-white/15 dark:hover:bg-black/25;
+  }
+  
+  .gradient-bg {
+    @apply bg-gradient-to-br from-primary to-secondary bg-[length:200%_200%] animate-gradient;
+  }
+
+  .glow {
+    @apply shadow-[0_0_10px_rgba(138,43,226,0.2)] dark:shadow-[0_0_10px_rgba(75,0,130,0.2)] 
+           hover:shadow-[0_0_15px_rgba(30,144,255,0.25)] dark:hover:shadow-[0_0_15px_rgba(0,0,139,0.25)] 
+           transition-shadow duration-300;
+  }
+
+  .glass-button {
+    @apply backdrop-blur-lg bg-white/5 dark:bg-black/10 
+           border border-white/20 dark:border-white/10 
+           shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1),0_2px_4px_-2px_rgba(0,0,0,0.1),inset_0_1px_1px_rgba(255,255,255,0.1)]
+           dark:shadow-[0_4px_6px_-1px_rgba(0,0,0,0.2),0_2px_4px_-2px_rgba(0,0,0,0.1),inset_0_1px_1px_rgba(255,255,255,0.05)]
+           hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.15),0_4px_6px_-4px_rgba(0,0,0,0.15),inset_0_1px_2px_rgba(255,255,255,0.15)]
+           dark:hover:shadow-[0_10px_15px_-3px_rgba(0,0,0,0.25),0_4px_6px_-4px_rgba(0,0,0,0.15),inset_0_1px_2px_rgba(255,255,255,0.05)]
+           hover:bg-white/10 dark:hover:bg-black/15;
+  }
+
+  .glass-card {
+    @apply backdrop-blur-lg bg-white/5 dark:bg-black/15 
+           border border-white/15 dark:border-white/10 
+           shadow-[0_10px_30px_-15px_rgba(0,0,0,0.25),inset_0_1px_2px_rgba(255,255,255,0.1)]
+           dark:shadow-[0_10px_30px_-15px_rgba(0,0,0,0.3),inset_0_1px_2px_rgba(255,255,255,0.05)];
+  }
+
+  .fade-in {
+    @apply animate-fadeIn;
+  }
+}
+
+@layer utilities {
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes particlesDrift {
+    0% {
+      background-position: 0 0, 25px 25px;
+    }
+    100% {
+      background-position: 1000px 500px, 1025px 525px;
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.8s ease-in;
+  }
+  
+  .animate-gradient {
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .font-space {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .filter-invert {
+    filter: invert(1);
+  }
+}
